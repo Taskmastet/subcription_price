@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ЦѢНА ЖИЗНИ · Сколько часов жизни стоят твои подписки</title>
+<meta name="description" content="Мрачный калькулятор: узнай, сколько часов своей жизни ты отдаёшь за подписки, исходя из твоей почасовой ставки." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- грязь / зерно / кровавая дымка -->
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <main class="scroll">
+
+    <!-- ════════════ ВРАТА ════════════ -->
+    <header class="hero">
+      <div class="ornament ornament--top" aria-hidden="true">✠ &nbsp;❧ ⚜ ☙&nbsp; ✠</div>
+
+      <p class="kicker">— Memento Mori —</p>
+      <h1 class="title">Цѣна&nbsp;Жизни</h1>
+      <p class="subtitle">Сколько часов твоего бытия выпивают подписки</p>
+
+      <!-- ритуальный круг-сигил -->
+      <div class="sigil" aria-hidden="true">
+        <div class="sigil__ring"></div>
+        <div class="sigil__ring sigil__ring--inner"></div>
+        <div class="sigil__cross">✠</div>
+        <div class="sigil__spike sigil__spike--n"></div>
+        <div class="sigil__spike sigil__spike--e"></div>
+        <div class="sigil__spike sigil__spike--s"></div>
+        <div class="sigil__spike sigil__spike--w"></div>
+      </div>
+
+      <p class="scroll-hint">Спустись во тьму ↓</p>
+    </header>
+
+    <!-- ════════════ АЛТАРЬ-КАЛЬКУЛЯТОР ════════════ -->
+    <section class="altar">
+      <div class="frame">
+        <span class="frame__corner frame__corner--tl">✦</span>
+        <span class="frame__corner frame__corner--tr">✦</span>
+        <span class="frame__corner frame__corner--bl">✦</span>
+        <span class="frame__corner frame__corner--br">✦</span>
+
+        <h2 class="frame__title">Принеси&nbsp;жертву</h2>
+        <p class="frame__lead">Впиши свои подписки и почасовую ставку — алтарь подсчитает цену в часах жизни.</p>
+
+        <!-- подписки -->
+        <div class="block">
+          <div class="block__head">
+            <span class="block__label">Подписки</span>
+            <span class="block__hint">стоимость в месяц</span>
+          </div>
+          <div id="subs" class="subs"></div>
+          <button type="button" id="addSub" class="btn btn--ghost">✦ &nbsp;Добавить подписку</button>
+        </div>
+
+        <!-- ставка -->
+        <div class="block">
+          <div class="block__head">
+            <span class="block__label">Твоя цена</span>
+            <span class="block__hint">заработок за час</span>
+          </div>
+          <div class="wage">
+            <input type="number" id="wage" class="inp inp--wage" min="0" step="any" inputmode="decimal" placeholder="0" />
+            <span class="wage__unit" id="wageUnit">₽ / час</span>
+          </div>
+        </div>
+
+        <!-- валюта -->
+        <div class="currency">
+          <span class="currency__label">Монета:</span>
+          <div class="currency__opts" id="currency">
+            <button type="button" class="chip is-active" data-cur="₽">₽</button>
+            <button type="button" class="chip" data-cur="$">$</button>
+            <button type="button" class="chip" data-cur="€">€</button>
+            <button type="button" class="chip" data-cur="₴">₴</button>
+          </div>
+        </div>
+
+        <button type="button" id="calc" class="btn btn--blood">Вычислить&nbsp;цену</button>
+        <p id="error" class="error" role="alert"></p>
+      </div>
+    </section>
+
+    <!-- ════════════ ПРИГОВОР ════════════ -->
+    <section class="verdict" id="verdict" hidden>
+      <div class="ornament ornament--mid" aria-hidden="true">☙ &nbsp;⚜&nbsp; ❧</div>
+      <p class="verdict__kicker">Приговор вынесен</p>
+
+      <div class="verdict__hero">
+        <span class="verdict__num" id="bigHours">0</span>
+        <span class="verdict__unit">часов жизни в год</span>
+      </div>
+
+      <p class="verdict__line" id="verdictText"></p>
+
+      <div class="tally">
+        <div class="tally__cell">
+          <span class="tally__num" id="hpm">0</span>
+          <span class="tally__cap">часов в месяц</span>
+        </div>
+        <div class="tally__cell">
+          <span class="tally__num" id="wdays">0</span>
+          <span class="tally__cap">рабочих дней (8ч) в год</span>
+        </div>
+        <div class="tally__cell">
+          <span class="tally__num" id="ddays">0</span>
+          <span class="tally__cap">полных суток за 10 лет</span>
+        </div>
+      </div>
+
+      <p class="verdict__spent">Всего подписок: <span id="spent">0</span> в месяц</p>
+      <div class="ornament ornament--bottom" aria-hidden="true">✠ &nbsp;❧ ⚜ ☙&nbsp; ✠</div>
+    </section>
+
+    <footer class="foot">
+      <p>Время — единственная монета, которую нельзя вернуть.</p>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
